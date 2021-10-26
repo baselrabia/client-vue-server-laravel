@@ -1,17 +1,19 @@
 <template>
   <div>
-    <Header />
-    <router-view></router-view>
+    <Latest />
+    <Posts />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
+import Latest from "./Latest";
+import Posts from "./Posts";
 
 export default {
-  name: "App",
+  name: "Blog",
   components: {
-    Header,
+    Latest,
+    Posts,
   },
 };
 </script>
