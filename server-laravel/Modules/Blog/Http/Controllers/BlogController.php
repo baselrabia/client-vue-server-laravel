@@ -5,6 +5,7 @@ namespace Modules\Blog\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Blog\Entities\Post;
 
 class BlogController extends Controller
 {
@@ -17,14 +18,7 @@ class BlogController extends Controller
         return view('blog::index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
-    public function create()
-    {
-        return view('blog::create');
-    }
+ 
 
     /**
      * Store a newly created resource in storage.
@@ -38,41 +32,31 @@ class BlogController extends Controller
 
     /**
      * Show the specified resource.
-     * @param int $id
+     * @param Post $post
      * @return Renderable
      */
-    public function show($id)
+    public function show(Post $post)
     {
         return view('blog::show');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function edit($id)
-    {
-        return view('blog::edit');
-    }
-
+ 
     /**
      * Update the specified resource in storage.
      * @param Request $request
-     * @param int $id
+     * @param post $post
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         //
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
+     * @param post $post
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         //
     }
