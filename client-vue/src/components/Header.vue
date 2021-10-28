@@ -1,14 +1,7 @@
 <template>
   <header>
     <div class="left">
-      <img src="../assets/logo.png" alt="TP" class="logo" />
-      <p>
-        <!-- use the router-link component for navigation. -->
-        <!-- specify the link by passing the `to` prop. -->
-        <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
-        <router-link to="/"> Home |</router-link>
-        <router-link to="/about"> About </router-link>
-      </p>
+      <router-link to="/"> <img src="../assets/logo.png" alt="TP" class="logo" /></router-link>
     </div>
 
     <div class="center">
@@ -20,7 +13,11 @@
     </div>
 
     <div class="right">
-      <button class="create-post">Create New Post</button>
+      <!-- use the router-link component for navigation. -->
+      <!-- specify the link by passing the `to` prop. -->
+      <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
+      <router-link to="/"> Home |</router-link>
+      <router-link to="/about"> About </router-link>
     </div>
   </header>
 </template>
@@ -76,7 +73,7 @@ header {
       max-width: 250px;
       height: 50px;
 
-      margin: 0 ;
+      margin: 0;
 
       outline: none;
       border: none;

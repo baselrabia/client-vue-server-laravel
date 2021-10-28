@@ -1,19 +1,37 @@
 <template>
   <div>
-    <Latest />
-    <Posts />
+    <Latest :posts="posts" :showModel="false" />
+    <Posts :posts="posts" :count="postCount" @showMore="this.showMore" />
   </div>
 </template>
 
 <script>
 import Latest from "./Latest";
 import Posts from "./Posts";
+import PostDataService from "../services/PostDataService";
 
 export default {
   name: "Blog",
-  components: {
-    Latest,
-    Posts,
+  data() {
+    return {
+      API_URL: "http://localhost:8000/api/posts",
+      posts: [],
+      postCount: 8,
+    };
+  },
+  components: { Latest, Posts },
+  methods: {
+    getPosts() {
+      PostDataService.getAll().then((response) => {
+        this.posts = response.data.data;
+      });
+    },
+    showMore() {
+      this.postCount += 2;
+    },
+  },
+  beforeMount() {
+    this.getPosts();
   },
 };
 </script>
