@@ -3,6 +3,8 @@
 
     <div class="post" v-for="post in posts.slice(6, count)" :key="post.id">
       <h3>{{ post.title }}</h3>
+
+      <p>{{ post.body }}</p>
  
       </div>
     <button class="load" @click="$emit('showMore')" v-if="count < posts.length" >See More</button>

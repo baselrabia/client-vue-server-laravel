@@ -1,16 +1,14 @@
 <template>
   <section class="latest">
+  <div class="div-right">
     <div class="right">
       <button id="show-modal" class="create-post" @click="showModal = true">Create New Post</button>
+      
       <!-- use the modal component, pass in the prop -->
-      <modal v-if="showModal" @close="showModal = false">
-        <!--
-          you can use custom content here to overwrite
-          default content
-        -->
-        <h3  >custom header</h3>
-      </modal>
+      <modal v-if="showModal" @close="showModal = false"></modal> 
+      
     </div>
+  </div>
     <h3>Latest Posts</h3>
     <div class="posts" v-if="posts.length >= 6">
       <div class="post">
@@ -79,7 +77,7 @@ import modal from "./Modal";
 
 export default {
   name: "latest",
-  props: ["posts","showModal"],
+  props: ["posts"],
   data() {
     return {
       post: {
@@ -98,13 +96,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.latest {
-  display: block;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+.div-right{
 
-  .right {
+  display: flex;
+  justify-content: center;
+  padding: 50px 50px 0px;
+
+.right {
     flex: 1;
 
     display: flex;
@@ -134,6 +132,15 @@ export default {
       box-sizing: border-box;
     }
   }
+}
+
+.latest {
+  display: block;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  
 
   .posts {
     display: grid;

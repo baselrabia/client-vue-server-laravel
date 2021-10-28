@@ -29,6 +29,20 @@ export default {
     showMore() {
       this.postCount += 2;
     },
+    submitPost(post) {
+      PostDataService.create(post).then((response) => {
+      console.log(response.data.data);
+      });
+    },
+  },
+  mounted () {
+    this.eventBus.on('submitPost', (post) => {
+      PostDataService.create(post).then((response) => {
+        this.posts.unshift(response.data);
+      }).catch((error) => {
+        alert("The Post did\'nt created",error);
+      });
+    })
   },
   beforeMount() {
     this.getPosts();

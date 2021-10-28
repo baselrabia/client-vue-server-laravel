@@ -2,6 +2,10 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import routes from "./router";
 import { createRouter, createWebHashHistory } from "vue-router";
+import mitt from "mitt";
+
+
+const eventBus = mitt();
 
 // 5. Create and mount the root instance.
 const app = createApp(App);
@@ -16,5 +20,6 @@ const router =  createRouter({
 
 
 app.use(router);
+app.config.globalProperties.eventBus = eventBus;
 
 app.mount("#app");
