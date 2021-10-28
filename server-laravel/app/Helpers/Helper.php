@@ -20,3 +20,25 @@ function SuccessResponse($data, $message = "", $status = 200): JsonResponse
         'data' => $data
     ], $status);
 }
+
+/**
+ * uploadFile
+ */
+if (!function_exists('uploadFile')) {
+    function uploadFile($path, $file)
+    {
+        // $baseDir = 'uploads/' . $path;
+        // $baseDir =   $path;
+
+        $name = sha1(time() . $file->getClientOriginalName());
+        $extension = $file->getClientOriginalExtension();
+        $fileName = "{$name}.{$extension}";
+        Storage::putFileAs($path, $file, $fileName);
+
+        //$file->move(public_path() . '/' . $baseDir, $fileName);
+
+        // return "{{$baseDir}}/{{$fileName}}";
+        $filePath = 'storage/' . $path . '/' . $fileName;
+        return $filePath;
+    }
+}
