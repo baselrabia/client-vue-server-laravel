@@ -82,7 +82,7 @@ export default {
     };
   },
   methods:{
-    checkForm: function (e) {
+    checkForm: function () {
       if (this.title && this.body) {
         this.$emit("close");
         this.eventBus.emit("submitPost", {
