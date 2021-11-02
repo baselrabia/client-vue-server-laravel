@@ -2,7 +2,10 @@
   <div class="posts">
 
     <div class="post" v-for="post in posts.slice(6, count)" :key="post.id">
-      <h3>{{ post.title }}</h3>
+      <h3>   
+       <router-link :to="{ path: '/posts/'+ post.id }" >
+       {{ post.title }}</router-link>
+       </h3>
 
       <p>{{ post.body }}</p>
  

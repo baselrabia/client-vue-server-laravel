@@ -1,14 +1,15 @@
 <template>
   <section class="latest">
-  <div class="div-right">
-    <div class="right">
-      <button id="show-modal" class="create-post" @click="showModal = true">Create New Post</button>
-      
-      <!-- use the modal component, pass in the prop -->
-      <modal v-if="showModal" @close="showModal = false"></modal> 
-      
+    <div class="div-right">
+      <div class="right">
+        <button id="show-modal" class="create-post" @click="showModal = true">
+          Create New Post
+        </button>
+
+        <!-- use the modal component, pass in the prop -->
+        <create v-if="showModal" @close="showModal = false"></create>
+      </div>
     </div>
-  </div>
     <h3>Latest Posts</h3>
     <div class="posts" v-if="posts.length >= 6">
       <div class="post">
@@ -18,7 +19,10 @@
             backgroundImage: `url('${require('../assets/post-1-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[1].title">{{ posts[1].title }}</h4>
+
+        <router-link :to="{ path: '/posts/' + posts[1].id }">
+          <h4 :title="posts[1].title">{{ posts[1].title }}</h4>
+        </router-link>
       </div>
       <div class="post col-2 row-2">
         <div
@@ -27,7 +31,9 @@
             backgroundImage: `url('${require('../assets/post-2-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[0].title">{{ posts[0].title }}</h4>
+        <router-link :to="{ path: '/posts/' + posts[0].id }">
+          <h4 :title="posts[0].title">{{ posts[0].title }}</h4>
+        </router-link>
       </div>
       <div class="post row-2">
         <div
@@ -36,7 +42,9 @@
             backgroundImage: `url('${require('../assets/post-3-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[2].title">{{ posts[2].title }}</h4>
+        <router-link :to="{ path: '/posts/' + posts[2].id }">
+          <h4 :title="posts[2].title">{{ posts[2].title }}</h4>
+        </router-link>
       </div>
       <div class="post row-2">
         <div
@@ -45,7 +53,9 @@
             backgroundImage: `url('${require('../assets/post-4-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[3].title">{{ posts[3].title }}</h4>
+        <router-link :to="{ path: '/posts/' + posts[3].id }">
+          <h4 :title="posts[3].title">{{ posts[3].title }}</h4>
+        </router-link>
       </div>
       <div class="post">
         <div
@@ -54,7 +64,9 @@
             backgroundImage: `url('${require('../assets/post-5-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[4].title">{{ posts[4].title }}</h4>
+        <router-link :to="{ path: '/posts/' + posts[4].id }">
+          <h4 :title="posts[4].title">{{ posts[4].title }}</h4>
+        </router-link>
       </div>
       <div class="post col-2">
         <div
@@ -63,7 +75,9 @@
             backgroundImage: `url('${require('../assets/post-6-image@2x.png')}')`,
           }"
         ></div>
-        <h4 :title="posts[5].title">{{ posts[5].title }}</h4>
+        <router-link :to="{ path: '/posts/' + posts[5].id }">
+          <h4 :title="posts[5].title">{{ posts[5].title }}</h4>
+        </router-link>
       </div>
     </div>
     <div class="posts" v-else>
@@ -73,7 +87,7 @@
 </template>
 
 <script>
-import modal from "./Modal";
+import create from "./Post/Create";
 
 export default {
   name: "latest",
@@ -85,24 +99,22 @@ export default {
         body: "",
       },
       submitted: false,
-      showModal: false
-
+      showModal: false,
     };
   },
   components: {
-    modal,
+    create,
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.div-right{
-
+.div-right {
   display: flex;
   justify-content: center;
   padding: 50px 50px 0px;
 
-.right {
+  .right {
     flex: 1;
 
     display: flex;
@@ -139,8 +151,6 @@ export default {
   width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-
-  
 
   .posts {
     display: grid;

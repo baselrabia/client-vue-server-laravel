@@ -45,6 +45,7 @@ export default {
           alert("The Post did'nt created", error);
         });
     });
+ 
   },
   beforeMount() {
     this.getPosts();
